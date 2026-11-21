@@ -522,7 +522,7 @@ document.getElementById("backFromPayment").onclick=function(){location.hash="#me
 document.getElementById("backFromWithdraw").onclick=function(){location.hash="#member"};
 var payMethod=document.getElementById("method"),payInfo=document.getElementById("paymentInfo"),trxGroup=document.getElementById("trxGroup"),payTitle=document.getElementById("methodTitle"),payNumber=document.getElementById("displayNumber");
 // Replace these placeholders with your verified merchant numbers before accepting payments.
-var payNumbers={bkash:"017XXXXXXXXX",nagad:"017XXXXXXXXX",rocket:"017XXXXXXXXX"};
+var payNumbers={bkash:"01782601342",nagad:"01782601342",rocket:"017XXXXXXXXX"};
 payMethod.addEventListener("change",function(){
   var m=this.value,labels={bkash:"📱 বিকাশ (bKash) পেমেন্ট",nagad:"📱 নগদ (Nagad) পেমেন্ট",rocket:"📱 রকেট (Rocket) পেমেন্ট"};
   if(labels[m]){payInfo.style.display="block";trxGroup.style.display="block";payTitle.textContent=labels[m];payNumber.textContent=payNumbers[m]}
