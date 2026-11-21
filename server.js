@@ -4,8 +4,24 @@ const TOKEN=process.env.ADMIN_TOKEN;
 if(!TOKEN){console.error("Set ADMIN_TOKEN first, e.g.  ADMIN_TOKEN=mysecret node server.js");process.exit(1)}
 const DATA=path.join(process.env.DATA_DIR||__dirname,"data.json");
 const app=express(),srv=http.createServer(app),io=new Server(srv);
-app.use(express.json({limit:"10kb"}));app.use(express.static(__dirname+"/public"));
-app.get("/admin",(q,r)=>r.sendFile(__dirname+"/public/admin.html"));
+app.use(express.json({limit:"10kb"}));
+// Serve the site whether files are in /public or directly in the repository root.
+const PUBLIC_DIR=fs.existsSync(path.join(__dirname,"public","index.html"))
+  ? path.join(__dirname,"public")
+  : __dirname;
+app.use(express.static(PUBLIC_DIR));
+app.get("/",(q,r)=>{
+  const candidates=[path.join(PUBLIC_DIR,"index.html"),path.join(__dirname,"index.html")];
+  const file=candidates.find(f=>fs.existsSync(f));
+  if(!file)return r.status(404).send("index.html not found. Upload index.html to the repository root or public/ folder.");
+  r.sendFile(file);
+});
+app.get("/admin",(q,r)=>{
+  const candidates=[path.join(PUBLIC_DIR,"admin.html"),path.join(PUBLIC_DIR,"admin_updated.html"),path.join(__dirname,"admin.html"),path.join(__dirname,"admin_updated.html")];
+  const file=candidates.find(f=>fs.existsSync(f));
+  if(!file)return r.status(404).send("admin.html not found. Upload admin.html or admin_updated.html.");
+  r.sendFile(file);
+});
 
 /* ---------- storage (demo coins only) ---------- */
 let DB={users:{},sessions:{},suggestions:[],deposits:[],payments:[]};
