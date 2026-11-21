@@ -231,51 +231,46 @@ body.nonav{padding-bottom:24px}
   <div class="money-head"><h2>HEDAYATUL Payment</h2><p>নিরাপদ ম্যানুয়াল পেমেন্ট সিস্টেম</p></div>
   <div class="money-card">
     <style>
-      #payment .manual-pay{background:#fff;color:#222;padding:20px;border-radius:14px;box-shadow:0 8px 25px rgba(106,27,154,.15);max-width:460px;margin:auto}
-      #payment .manual-pay .brand{font-size:23px;font-weight:800;color:#6a1b9a;text-align:center}
-      #payment .manual-pay .sub{text-align:center;color:#888;font-size:12px;margin:4px 0 18px}
-      #payment .manual-pay label{display:block;color:#333;font-size:14px;font-weight:700;margin:12px 0 6px}
-      #payment .manual-pay input,#payment .manual-pay select{width:100%;padding:12px;border:1px solid #ccc;border-radius:8px;font-size:16px;background:#fff;color:#222}
-      #payment .manual-pay .info{display:none;background:linear-gradient(135deg,#e2136e,#b00d56);color:#fff;padding:16px;border-radius:10px;margin:14px 0;text-align:center}
-      #payment .manual-pay .num{background:#fff;color:#e2136e;padding:12px;border-radius:6px;font-weight:800;font-size:19px;display:flex;justify-content:space-between;gap:8px;align-items:center;margin:10px 0}
-      #payment .manual-pay button{cursor:pointer}
-      #payment .manual-pay .copy{background:#b00d56;color:#fff;border:0;padding:8px 12px;border-radius:5px}
-      #payment .manual-pay .send{width:100%;background:linear-gradient(135deg,#6a1b9a,#8e24aa);color:#fff;border:0;padding:14px;border-radius:8px;font-size:17px;font-weight:800;margin-top:14px}
-      #payment .manual-pay .send:disabled{opacity:.6}
-      #payment .manual-pay .hint{font-size:12px;color:#e2136e}
-      #payment .manual-pay .msg{display:none;padding:12px;border-radius:8px;margin-top:12px;text-align:center;font-size:14px}
-      #payment .manual-pay .ok{display:block;background:#d4edda;color:#155724}
-      #payment .manual-pay .err{display:block;background:#f8d7da;color:#721c24}
-      #payment .manual-pay .safe{font-size:12px;color:#777;text-align:center;margin-top:14px}
+      #payment .manual-pay{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:#fff;color:#222;padding:25px;border-radius:14px;box-shadow:0 8px 25px rgba(106,27,154,.15);width:100%;max-width:420px;margin:auto}
+      #payment .manual-pay .logo{font-size:24px;font-weight:bold;color:#6a1b9a;text-align:center;margin-bottom:5px;display:flex;justify-content:center;align-items:center;gap:8px}
+      #payment .manual-pay .logo span{font-size:30px}
+      #payment .manual-pay .subtitle{text-align:center;color:#888;font-size:13px;margin-bottom:20px}
+      #payment .manual-pay .form-group{margin-bottom:15px}
+      #payment .manual-pay label{display:block;margin-bottom:6px;font-weight:600;color:#333;font-size:14px}
+      #payment .manual-pay input,#payment .manual-pay select{width:100%;padding:12px;border:1px solid #ccc;border-radius:8px;font-size:16px;outline:none;background:#fff;color:#222}
+      #payment .manual-pay input:focus,#payment .manual-pay select:focus{border-color:#6a1b9a}
+      #payment .manual-pay #paymentInfo{display:none;background:linear-gradient(135deg,#e2136e,#b00d56);color:#fff;padding:20px;border-radius:10px;margin-bottom:15px;text-align:center}
+      #payment .manual-pay #paymentInfo h3{margin-top:0;margin-bottom:10px;font-size:17px}
+      #payment .manual-pay .number-box{background:#fff;color:#e2136e;padding:12px;border-radius:6px;font-size:20px;font-weight:bold;letter-spacing:1px;margin:10px 0;display:flex;justify-content:space-between;align-items:center;gap:8px}
+      #payment .manual-pay .copy-btn{background:#b00d56;color:#fff;border:none;padding:8px 12px;border-radius:5px;cursor:pointer;font-size:13px}
+      #payment .manual-pay .pay-btn{background:linear-gradient(135deg,#6a1b9a,#8e24aa);color:#fff;border:none;padding:15px;width:100%;border-radius:8px;font-size:18px;font-weight:bold;cursor:pointer;margin-top:5px}
+      #payment .manual-pay .pay-btn:disabled{background:#aaa;cursor:not-allowed}
+      #payment .manual-pay .note{font-size:12px;color:#777;margin-top:15px;text-align:center}
+      #payment .manual-pay .success-msg{display:none;background:#d4edda;color:#155724;padding:15px;border-radius:8px;margin-top:15px;text-align:center;font-weight:bold;font-size:15px}
+      #payment .manual-pay .error-msg{display:none;background:#f8d7da;color:#721c24;padding:12px;border-radius:8px;margin-top:10px;text-align:center;font-size:14px}
+      #payment .manual-pay .trx-hint{font-size:12px;color:#e2136e;margin-top:5px}
+      #payment .manual-pay .money-form-group{margin-bottom:15px}
     </style>
     <div class="manual-pay">
-      <div class="brand">∞ HEDAYATUL</div>
-      <div class="sub">নিরাপদ ম্যানুয়াল পেমেন্ট সিস্টেম</div>
-      <form id="addMoneyForm">
-        <label for="moneyAmount">টাকার পরিমাণ (৳)</label>
-        <input type="number" id="moneyAmount" min="1" max="10000" step="1" placeholder="যেমন: ৫০০" required>
-        <label for="paymentMethod">পেমেন্ট মাধ্যম সিলেক্ট করুন</label>
-        <select id="paymentMethod" required>
-          <option value="">-- সিলেক্ট করুন --</option>
-          <option value="bkash">📱 বিকাশ (bKash)</option>
-          <option value="nagad">📱 নগদ (Nagad)</option>
-          <option value="rocket">📱 রকেট (Rocket)</option>
-        </select>
-        <div id="manualPaymentInfo" class="info">
-          <h3 id="manualMethodTitle">পেমেন্ট</h3>
-          <p>নিচের নাম্বারে টাকা Send Money করুন:</p>
-          <div class="num"><span id="manualDisplayNumber">017XXXXXXXXX</span><button type="button" class="copy" id="copyPaymentNumber">কপি</button></div>
+      <div class="logo"><span>∞</span> HEDAYATUL</div>
+      <div class="subtitle">নিরাপদ ম্যানুয়াল পেমেন্ট সিস্টেম</div>
+      <form id="paymentForm">
+        <div class="form-group"><label for="amount">টাকার পরিমাণ (৳)</label><input type="number" id="amount" placeholder="যেমন: ৫০০" min="1" max="10000" step="1" required></div>
+        <div class="form-group"><label for="method">পেমেন্ট মাধ্যম সিলেক্ট করুন</label>
+          <select id="method" required><option value="">-- সিলেক্ট করুন --</option><option value="bkash">📱 বিকাশ (bKash)</option><option value="nagad">📱 নগদ (Nagad)</option><option value="rocket">📱 রকেট (Rocket)</option></select>
+        </div>
+        <div id="paymentInfo"><h3 id="methodTitle">বিকাশ (bKash) পেমেন্ট</h3><p>নিচের নাম্বারে টাকা Send Money করুন:</p>
+          <div class="number-box"><span id="displayNumber">017XXXXXXXXX</span><button type="button" class="copy-btn" id="copyNumberBtn">কপি</button></div>
           <p>টাকা পাঠানোর পর নিচে TrxID লিখুন।</p>
         </div>
-        <div id="manualTrxGroup" hidden>
-          <label for="paymentTrxid">ট্রানজেকশন আইডি (TrxID)</label>
-          <input type="text" id="paymentTrxid" maxlength="40" placeholder="SMS-এ পাওয়া TrxID লিখুন">
-          <p class="hint">SMS-এ পাওয়া TrxID হুবহু লিখুন।</p>
+        <div class="form-group" id="trxGroup" style="display:none"><label for="trxid">ট্রানজেকশন আইডি (TrxID)</label>
+          <input type="text" id="trxid" maxlength="40" placeholder="যেমন: 9F7A2B1C"><p class="trx-hint">* SMS-এ পাওয়া ট্রানজেকশন আইডি হুবহু লিখুন</p>
         </div>
-        <button type="submit" class="send" id="manualPaySubmit">পেমেন্ট জমা দিন</button>
+        <button type="submit" class="pay-btn" id="submitBtn">ভেরিফাই করুন</button>
       </form>
-      <div id="moneyMessage" class="msg" aria-live="polite"></div>
-      <div class="safe">⚠️ কোনো অবস্থাতেই আপনার PIN বা OTP এখানে দেবেন না।<br>অ্যাডমিন যাচাই করার পর কয়েন যোগ হবে।</div>
+      <div id="successMsg" class="success-msg">✅ আপনার পেমেন্ট অনুরোধ সফলভাবে জমা হয়েছে!<br><small>অ্যাডমিন টাকা ও TrxID যাচাই করে Approve করলে ৩ মিনিট পর কয়েন যোগ হবে।</small></div>
+      <div id="errorMsg" class="error-msg" aria-live="polite"></div>
+      <p class="note">⚠️ কোনো অবস্থাতেই আপনার PIN বা OTP এখানে দেবেন না।<br>এটি একটি ম্যানুয়াল পেমেন্ট সিস্টেম।</p>
     </div>
     <button class="money-back" type="button" id="backFromPayment">← Member পেজে ফিরে যান</button>
   </div>
@@ -525,31 +520,31 @@ document.getElementById("openAddMoney").addEventListener("click",function(e){
 document.getElementById("openWithdraw").onclick=function(){location.hash="#withdraw"};
 document.getElementById("backFromPayment").onclick=function(){location.hash="#member"};
 document.getElementById("backFromWithdraw").onclick=function(){location.hash="#member"};
-var payMethod=document.getElementById("paymentMethod"),payInfo=document.getElementById("manualPaymentInfo"),trxGroup=document.getElementById("manualTrxGroup"),payTitle=document.getElementById("manualMethodTitle"),payNumber=document.getElementById("manualDisplayNumber");
-var payNumbers={bkash:"017XXXXXXXXX",nagad:"017XXXXXXXXX",rocket:"017XXXXXXXXX"};
+var payMethod=document.getElementById("method"),payInfo=document.getElementById("paymentInfo"),trxGroup=document.getElementById("trxGroup"),payTitle=document.getElementById("methodTitle"),payNumber=document.getElementById("displayNumber");
+// Replace these placeholders with your verified merchant numbers before accepting payments.
+var payNumbers={bkash:"01782601342",nagad:"01782601342",rocket:"017XXXXXXXXX"};
 payMethod.addEventListener("change",function(){
   var m=this.value,labels={bkash:"📱 বিকাশ (bKash) পেমেন্ট",nagad:"📱 নগদ (Nagad) পেমেন্ট",rocket:"📱 রকেট (Rocket) পেমেন্ট"};
-  if(labels[m]){payInfo.style.display="block";trxGroup.hidden=false;payTitle.textContent=labels[m];payNumber.textContent=payNumbers[m]}
-  else{payInfo.style.display="none";trxGroup.hidden=true}
+  if(labels[m]){payInfo.style.display="block";trxGroup.style.display="block";payTitle.textContent=labels[m];payNumber.textContent=payNumbers[m]}
+  else{payInfo.style.display="none";trxGroup.style.display="none"}
 });
-document.getElementById("copyPaymentNumber").onclick=function(){
+document.getElementById("copyNumberBtn").onclick=function(){
   var n=payNumber.textContent;
-  if(n.indexOf("X")>=0){alert("প্রথমে server.js / index.html-এ আপনার সঠিক পেমেন্ট নম্বর বসান।");return}
-  if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(n).then(function(){alert("নম্বর কপি হয়েছে: "+n)}).catch(function(){alert("নম্বরটি ম্যানুয়ালি কপি করুন: "+n)});
-  else alert("নম্বরটি ম্যানুয়ালি কপি করুন: "+n);
+  if(n.indexOf("X")>=0){alert("প্রথমে index.html-এ আপনার সঠিক পেমেন্ট নম্বর বসান।");return}
+  if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(n).then(function(){alert("✅ নাম্বার কপি হয়েছে: "+n)}).catch(function(){alert("কপি করা যায়নি। ম্যানুয়ালি কপি করুন।")});
+  else alert("নাম্বারটি ম্যানুয়ালি কপি করুন: "+n);
 };
-document.getElementById("addMoneyForm").onsubmit=function(e){
+document.getElementById("paymentForm").onsubmit=function(e){
   e.preventDefault();
-  var amount=Number(document.getElementById("moneyAmount").value),method=payMethod.value,trxid=document.getElementById("paymentTrxid").value.trim().toUpperCase();
-  var f=this,mm=document.getElementById("moneyMessage"),btn=document.getElementById("manualPaySubmit");
-  mm.className="msg";mm.style.display="none";
-  if(!Number.isFinite(amount)||amount<1||amount>10000||!method||!trxid){mm.textContent="সব তথ্য সঠিকভাবে পূরণ করুন।";mm.className="msg err";return}
-  btn.disabled=true;btn.textContent="জমা হচ্ছে...";
+  var amount=Number(document.getElementById("amount").value),method=payMethod.value,trxid=document.getElementById("trxid").value.trim().toUpperCase();
+  var f=this,err=document.getElementById("errorMsg"),ok=document.getElementById("successMsg"),btn=document.getElementById("submitBtn");
+  err.style.display="none";ok.style.display="none";
+  if(!Number.isFinite(amount)||amount<1||amount>10000||!method||!trxid){err.textContent="সব তথ্য সঠিকভাবে পূরণ করুন।";err.style.display="block";return}
+  btn.disabled=true;btn.textContent="যাচাই করা হচ্ছে...";
   api("/api/deposit/request",{amount:amount,method:method,trxid:trxid}).then(function(r){
-    if(r.error){mm.textContent=r.error;mm.className="msg err";return}
-    mm.textContent="✅ পেমেন্ট অনুরোধ জমা হয়েছে। Admin টাকা যাচাই করে Approve করার ৩ মিনিট পর "+amount+" কয়েন যোগ হবে।";
-    mm.className="msg ok";f.reset();payInfo.style.display="none";trxGroup.hidden=true;
-  }).finally(function(){btn.disabled=false;btn.textContent="পেমেন্ট জমা দিন"});
+    if(r.error){err.textContent=r.error;err.style.display="block";return}
+    f.style.display="none";ok.style.display="block";
+  }).finally(function(){btn.disabled=false;btn.textContent="ভেরিফাই করুন"});
 };
 document.getElementById("withdrawForm").onsubmit=function(e){
   e.preventDefault();
@@ -565,4 +560,4 @@ setInterval(tick,50);
 draw();route();
 </script>
 </body>
-</html>
+  </html>
